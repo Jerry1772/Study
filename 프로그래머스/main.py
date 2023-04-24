@@ -49,8 +49,8 @@ class Initializer:
             lines = "".join(f.readlines())
 
         lines = lines.replace("@url", f" https://school.programmers.co.kr/learn/courses/30/lessons/{idx}")
-        
-        if "param" in kwargs:
+
+        if kwargs['param'] is not None:
             params = kwargs['param'].replace(",", '": None,\n\t\t"')
             
             lines = lines.replace("#@param", f'"{params}": None')
