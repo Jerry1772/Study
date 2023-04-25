@@ -7,23 +7,21 @@
 
 # 수열의 일부([n:m])합은 수열1 ([0:m])의 합 - 수열2 ([0:n-1])의 합으로 표현될 수 있으니까
 # dp로 [0:i] 의 합을 i in range(len(seq)) 로 돌면서 계산해두고
-# max - min 을 찾아내면 될듯
+# np.max - np.min 을 찾아내면 될듯
 # 단, 펄스 수열은 2 가지 경우의 수가 생기므로 둘 다 고려해주어야 함
+import numpy as np
 def solution(sequence):
-    pulse = [(-1)**idx for idx in range(len(sequence))]
+    pulse = np.array([(-1)**idx for idx in range(len(sequence))])
     
-    seq = [s*p for s,p in zip(sequence,pulse)]
+    seq = pulse*sequence
     
-    dp = [seq[0]]
-    for s in seq[1:]:
-        dp.append(dp[-1]+s)
+    dp = seq.cumsum()
+    dp2 = dp*-1
 
-    dp2 = [d*-1 for d in dp]
+    mx = np.max(dp) - min(np.min(dp), 0)
+    mn = np.max(dp2) - min(np.min(dp2), 0)
 
-    mx = max(dp) - min(min(dp), 0)
-    mn = max(dp2) - min(min(dp2), 0)
-
-    return max(mx, mn)
+    return int(max(mx, mn))
 
 if __name__ == "__main__":
     param = {
