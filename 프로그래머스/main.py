@@ -124,5 +124,6 @@ if __name__ == "__main__":
     parser_init.add_bool("-f", "--force", help=">> force to overwrite the existing file")
     
     args = dict(vars(CustomParser.parse_args()))
+    print(args)
     i = Initializer.initialize(**args)
     
