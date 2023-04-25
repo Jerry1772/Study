@@ -9,6 +9,7 @@ class Cell:
         self.c = c
         self.val: Union[None, str] = None
         self.merged_with: Set[Cell] = set([])
+        # cell 이 병합된 다른 셀의 정보를 가질 필요가 없음. manager가 병합정보와 해당 값을 dict에 가지고 있는게 맞는듯 한데, 일단 나중에 수정하는 걸로 미뤄둠
 
     def update(self, new_val):
         for cell in self.merged_with:
