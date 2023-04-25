@@ -11,17 +11,16 @@
 # 단, 펄스 수열은 2 가지 경우의 수가 생기므로 둘 다 고려해주어야 함
 import numpy as np
 def solution(sequence):
-    pulse = np.array([(-1)**idx for idx in range(len(sequence))])
+    pulse = np.array([1 if i%2==0 else -1 for i in range(len(sequence))])
     
     seq = pulse*sequence
     
     dp = seq.cumsum()
-    dp2 = dp*-1
 
     mx = np.max(dp) - min(np.min(dp), 0)
-    mn = np.max(dp2) - min(np.min(dp2), 0)
-
-    return int(max(mx, mn))
+    mn = abs(np.min(dp) - max(np.max(dp), 0))
+    
+    return int(max(mx, mn)) 
 
 if __name__ == "__main__":
     param = {
