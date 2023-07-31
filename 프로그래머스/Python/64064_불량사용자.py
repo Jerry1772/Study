@@ -1,24 +1,26 @@
 # https://school.programmers.co.kr/learn/courses/30/lessons/64064
 
-from itertools import product
 import re
-def solution(user_id, banned_id):
+from itertools import product
+
+def solution(user_id:list[str], banned_id:list[str]):
     answer = []
-    len_ban = len(banned_id)
-    possible_list = [[] for _ in range(len_ban)]
-    for index, ban in enumerate(banned_id):
-        comp = re.compile(ban.replace("*","."))
+
+    ban_candidates = [[] for _ in range(len(banned_id))]
+    for idx, _id in enumerate(banned_id):
+        comp = re.compile(_id.replace("*","."))
         for user in user_id:
             if comp.fullmatch(user):
-                possible_list[index].append(user)
-
-
-    for p in product(*possible_list):
-        fset = frozenset(p)
-        if len(fset) != len_ban :
-            continue
-        answer.append(fset)
+                ban_candidates[idx].append(user)
+    
+    for p in product(*ban_candidates):
+        _set = frozenset(p)
+        if len(_set) == len(ban_candidates):
+            answer.append(_set)
+    
     return len(set(answer))
+        
+
 
 if __name__ == "__main__":
     param = {

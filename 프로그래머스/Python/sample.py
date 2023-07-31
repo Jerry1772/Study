@@ -1,6 +1,6 @@
 #@url
 
-def solution():
+def solution(#@funcparam):
     pass
 
 if __name__ == "__main__":

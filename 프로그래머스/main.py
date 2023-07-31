@@ -94,6 +94,7 @@ class Initializer:
         if param is not None:
             params = param.replace(",", '": None,\n\t\t"')
             lines = lines.replace("#@param", f'"{params}": None')
+            lines = lines.replace("#@funcparam", param)
 
         with open(file_name, "w") as f:
             f.write(lines)
