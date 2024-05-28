@@ -1,0 +1,23 @@
+syntax = "proto3";
+
+package calc;
+
+service Calculator {
+    rpc Add (CalcRequest) returns (CalcResponse) {}
+    rpc Subtract (CalcRequest) returns (CalcResponse) {}
+    rpc Multiply (CalcRequest) returns (CalcResponse) {}
+    rpc Divide (CalcRequest) returns (DivResponse) {}
+}
+
+message CalcRequest {
+    int32 n1=1;
+    int32 n2=2;
+}
+
+message CalcResponse {
+    int32 n1=1;
+}
+
+message DivResponse {
+    float f1=1;
+}
