@@ -118,9 +118,9 @@ class Initializer:
 
 if __name__ == "__main__":
     parser_init = CustomParser.init("init", "initialize python file")
-    parser_init.add_req("-i", "--idx", type=str, help=">> problem index")
-    parser_init.add_req("-n", "--name", type=str, help=">> problem name")
-    parser_init.add_opt("-l", "--lang", type=str, help=">> problem language", default="python")
+    parser_init.add_req("-i", "--idx", type=str, help=">> lesson index")
+    parser_init.add_req("-n", "--name", type=str, help=">> lesson name")
+    parser_init.add_opt("-l", "--lang", type=str, help=">> lesson language", default="python")
     parser_init.add_opt("-p", "--param", type=str, help=">> comma seperated parameter names")
     parser_init.add_bool("-f", "--force", help=">> force to overwrite the existing file")
     
