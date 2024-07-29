@@ -1,0 +1,15 @@
+name: mlflow_test
+
+docker_env:
+  image: jasonkong/mlflow-base-image:0.0.0
+  volumes: [$(pwd):/opt/preprocess, $(pwd)/../mlruns:/opt/mlruns]
+
+entry_points:
+  preprocess:
+    parameters:
+      data: {type: string, default: mnist}
+      cached_data_id: {type: string, default: ""}
+    command: |
+      python /opt/preprocess/src/preprocess.py \
+        --data {data}\
+        --cached_data_id {cached_data_id}
