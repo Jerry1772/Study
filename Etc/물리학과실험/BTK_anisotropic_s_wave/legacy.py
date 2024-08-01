@@ -37,18 +37,11 @@ class anis_s_wave():
                 #x, temp_step = np.linspace(B, A, self.temp_int_acc, retstep=True)
                 x, temp_step = np.linspace(B, A, 150, retstep=True)
                 #for j in range(self.temp_int_acc):
-                sigma_list = []
                 for j in range(150):
-                    sigma_list.append(self.sigma(x[j], angle))
                     np.put(calc2, j, scipy.integrate.simpson(self.df_dV(x[j] - V[i]) * self.sigma(x[j], angle), dx=ang_step))
                 calc = scipy.integrate.simpson(calc2, dx=temp_step)
             else:
                 calc = self.sigma(V[i], angle)
-            if i == 0:
-                import pickle
-                with open('./old.pickle', 'wb') as f:
-                    pickle.dump(sigma_list, f)
-                    
             np.put(result, i, calc)
         return result / term1
 
