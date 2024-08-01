@@ -1,0 +1,37 @@
+name: mlflow_test
+
+conda_env: conda_env.yaml
+
+entry_points:
+  main:
+    parameters:
+      preprocess_data: {type: string, default: mnist}
+      preprocess_cached_data_id: {type: string, default: ""}
+
+      train_output_path: {type: string, default: /opt/data/train/}
+      train_tensorboard: {type: string, default: /opt/data/tensorboard/}
+      train_epochs: {type: int, default: 1}
+      train_batch_size: {type: int, default: 32}
+      train_learning_rate: {type: float, default: 0.001}
+      train_model_name: {type: string, default: dense}
+
+      building_dockerfile_path: {type: string, default: ./Dockerfile}
+      building_model_filename: {type: string, default: dense_0.onnx}
+      building_entrypoint_path: {type: string, default: ./onnx_runtime_server_entrypoint.sh}
+
+      evaluate_output_path: {type: string, default: ./evaluate/}
+    command: |
+      python -m main \
+          --preprocess_data {preprocess_data}\
+          --preprocess_cached_data_id {preprocess_cached_data_id}\
+          --train_output_path {train_output_path}\
+          --train_tensorboard {train_tensorboard}\
+          --train_epochs {train_epochs}\
+          --train_batch_size {train_batch_size}\
+          --train_learning_rate {train_learning_rate}\
+          --train_model_name {train_model_name}\
+          --building_dockerfile_path {building_dockerfile_path}\
+          --building_model_filename {building_model_filename}\
+          --building_entrypoint_path {building_entrypoint_path}\
+          --evaluate_output_path {evaluate_output_path}
+
