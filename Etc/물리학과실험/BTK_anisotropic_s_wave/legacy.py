@@ -67,6 +67,9 @@ class anis_s_wave():
 
 
 if __name__ == '__main__':
+    import time
+    t = time.time()
     a = anis_s_wave(voltage=np.linspace(0.001,10,1999), temp=1)
     plt.plot(a.voltage, a.dI_dV(), 'r.')
+    print("total time cost (기존): ", time.time()-t)
     plt.show()
